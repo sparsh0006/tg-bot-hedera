@@ -22,24 +22,5 @@ A simple Telegram bot that interacts with the Hedera Agent API.
    npm start
    ```
 
-## How It Works
+5. Interact with the Hedera network through your Telegram bot!
 
-1. When the bot starts, it automatically fetches the list of available agents
-2. It uses the first agent in the list as the default
-3. When a user starts the bot with `/start`, they're automatically connected to this agent
-4. The user can immediately send messages to interact with the agent
-5. Use `/agents` to see a list of all available agents
-
-## Commands
-
-- `/start` - Show welcome message and available commands
-- `/agents` - List all available agents
-- `/newagent` - Start a new agent
-- Send any text message to chat with your current agent
-
-## Implementation Details
-
-The bot communicates with the Hedera Agent API using the following endpoints:
-
-- GET /agents - Get list of all agents
-- POST /:agentId/message - Send a message to an agent # tg-bot-hedera
