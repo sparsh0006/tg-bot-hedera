@@ -68,6 +68,12 @@ accountIdScene.on('text', (ctx) => {
 const publicKeyScene = new Scenes.BaseScene('public_key');
 publicKeyScene.enter((ctx) => ctx.reply('Please enter your Hedera Public Key:'));
 publicKeyScene.on('text', (ctx) => {
+  // Validate that the public key starts with "30"
+  const publicKey = ctx.message.text.trim();
+  if (!publicKey.startsWith('30')) {
+    return ctx.reply('Invalid Public Key format. Hedera Public Key should start with "30". Please try again:');
+  }
+  
   // Move to next scene without storing
   ctx.scene.enter('private_key');
 });
@@ -75,6 +81,12 @@ publicKeyScene.on('text', (ctx) => {
 const privateKeyScene = new Scenes.BaseScene('private_key');
 privateKeyScene.enter((ctx) => ctx.reply('Please enter your Hedera Private Key:'));
 privateKeyScene.on('text', (ctx) => {
+  // Validate that the private key starts with "30"
+  const privateKey = ctx.message.text.trim();
+  if (!privateKey.startsWith('30')) {
+    return ctx.reply('Invalid Private Key format. Hedera Private Key should start with "30". Please try again:');
+  }
+  
   // Move to next scene without storing
   ctx.scene.enter('key_type');
 });
@@ -129,7 +141,7 @@ bot.start(async (ctx) => {
         // Start the credential collection process
         setTimeout(() => {
           ctx.scene.enter('account_id');
-        }, 1000); // Small delay to ensure welcome message is sent first
+        }, 1000); 
       }
     } else {
       ctx.reply(`Sorry, no agents are available at the moment.`);
@@ -181,7 +193,6 @@ bot.on('text', async (ctx) => {
     console.log(ctx.message.text);
     const messageData = {
       text: ctx.message.text,
-      // Mock credentials would be included here in a real implementation
     };
     
     const response = await apiRequest('POST', `/${agentId}/message`, messageData);
