@@ -1,6 +1,6 @@
 # Hedera Telegram Bot
 
-A simple Telegram bot that interacts with the Hedera Agent API.
+A simple Telegram bot that interacts with the Hedera Agent.
 
 ## Setup
 
